@@ -33,57 +33,26 @@ weather_data = JSON.parse(response)
 # Use a loop to display the daily summary for the upcoming forecast.
 
 # 1. inspect the weather_data hash
-puts weather_data
+# puts weather_data
 current_temp = weather_data["currentConditions"]["temp"]["f"]
 current_sunshine = weather_data["currentConditions"]["comment"].downcase
 todays_high = weather_data["next_days"][0]["max_temp"]["f"]
 todays_sunshine = weather_data["next_days"][0]["comment"].downcase
 
-# 2. Add the loop for the extended forecast
-day2_day = ""
-
-for forecast in weather_data["next_days"]
-    if forecast == 1
-        day2_day = weather_data["next_days"][forecast]["day"]
-        day2_high = weather_data["next_days"][forecast]["max_temp"]
-        day2_sunshine = weather_data["next_days"][forecast]["comment"].downcase
-    elsif forecast == 2
-        day3_day = weather_data["next_days"][forecast]["day"]
-        day3_high = weather_data["next_days"][forecast]["max_temp"]
-        day3_sunshine = weather_data["next_days"][forecast]["comment"].downcase
-    elsif forecast == 3
-        day4_day = weather_data["next_days"][forecast]["day"]
-        day4_high = weather_data["next_days"][forecast]["max_temp"]
-        day4_sunshine = weather_data["next_days"][forecast]["comment"].downcase
-    elsif forecast == 4
-        day5_day = weather_data["next_days"][forecast]["day"]
-        day5_high = weather_data["next_days"][forecast]["max_temp"]
-        day5_sunshine = weather_data["next_days"][forecast]["comment"].downcase
-    elsif forecast == 5
-        day6_day = weather_data["next_days"][forecast]["day"]
-        day6_high = weather_data["next_days"][forecast]["max_temp"]
-        day6_sunshine = weather_data["next_days"][forecast]["comment"].downcase
-    elsif forecast == 6
-        day7_day = weather_data["next_days"][forecast]["day"]
-        day7_high = weather_data["next_days"][forecast]["max_temp"]
-        day7_sunshine = weather_data["next_days"][forecast]["comment"].downcase
-    end
-end
-
-
 puts "In Chicago, IL it is currently #{current_temp} degrees and #{current_sunshine}.
 The rest of today will be a high of #{todays_high} and #{todays_sunshine}.
-The upcoming weather forecast is:
-#{day2_day}: a high of #{day2_high} and #{day2_sunshine}.
-#{day3_day}: a high of #{day3_high} and #{day3_sunshine}.
-#{day4_day}: a high of #{day4_high} and #{day4_sunshine}.
-#{day5_day}: a high of #{day5_high} and #{day5_sunshine}.
-#{day6_day}: a high of #{day6_high} and #{day6_sunshine}.
-#{day7_day}: a high of #{day7_high} and #{day7_sunshine}.
-"
+The upcoming weather forecast is:"
 
-puts weather_data["next_days"]
-puts weather_data["next_days"][1]["day"]
+# 2. Add the loop for the extended forecast
+
+
+for forecast in weather_data["next_days"]
+    day_of_week = forecast["day"]
+    days_high = forecast["max_temp"]["f"]
+    days_sunshine = forecast["comment"].downcase
+    puts "#{day_of_week}: a high of #{days_high} and #{days_sunshine}"
+end
+
 
 # CHALLENGE
 # Can you display the weather forecast summary for a user-entered city?
